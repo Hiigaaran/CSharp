@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "ReportesGenerales";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron text-center top">
+
+    <table class="top">
+        <tr>
+            <td class="auto-style1">
+                <h1 class="top">Reportes Generales</h1>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style1">
+                <!--<div class="alert alert-info" role="alert">-->
+                <ul class="nav nav-tabs nav-justified navbar-inverse">
+                    <li role="presentation">@Html.ActionLink("Home", "HomeReportes", "Home")</li>
+                    <li role="presentation">@Html.ActionLink("Reportes Semanales", "ReporteSemanal", "Home")</li>
+                    <li role="presentation">@Html.ActionLink("Reporte Personalizado", "ReportePersonalizado", "Home")</li>
+                </ul>
+                <!--</div>-->
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style1">
+                <div class="jumbotron body-content">
+                    @RenderBody()
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <!--<div class="body-content">
+        (a)\RenderBody()
+    </div>-->
+</div>

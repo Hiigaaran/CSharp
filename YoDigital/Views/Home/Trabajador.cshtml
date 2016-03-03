@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "Trabajador";
+}
+@using System.Data
+<div class="jumbotron">
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    {
+        <div class="panel panel-default">
+            <div class="panel-heading" style="text-align:center">Ingrese su datos para obtener la información</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-1">
+
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="Usuario">User</span>
+                            <input type="text" class="form-control" id="txtUsuario" name="txtUsuario" placeholder="Ingrese user" autocomplete="off" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="Password">Pass</span>
+                            <input type="password" class="form-control" id="txtPassword" name="txtPassword" placeholder="****" autocomplete="off" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="submit" formmethod="post" value="Buscar" class="btn btn-default" />
+                    </div>
+                </div>
+                <div>
+                    <br />
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="input-daterange input-group" id="datepicker" data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="es" culture="es">
+                            <input type="text" class="input-sm form-control" name="start" id="start" autocomplete="off" />
+                            <span class="input-group-addon">Hasta</span>
+                            <input type="text" class="input-sm form-control" name="end" id="end" autocomplete="off" />
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                    $(function () {
+                        $('#sandbox-container .input-daterange').datepicker({
+                            language: 'es'
+                        });
+                    })
+                    </script>
+                </div>
+            </div>
+        </div>
+    }
+    @Html.Raw(ViewBag.Resultado)
+    <div class="jumbotron">
+        @Html.Raw(ViewBag.Saludo)
+        <div class="container">
+            <table id="Reporte" class="table table-striped table-bordered" style="width:850px">
+
+                <thead>
+
+                    <tr>
+                        @foreach (DataColumn col in Model.Tables[0].Columns)
+                        {
+                            <th class="info @col.ColumnName" style="text-align:center" id="@col.ColumnName">@col.ColumnName</th>
+                        }
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    @foreach (DataRow row in Model.Tables[0].Rows)
+                    {
+                        <tr>
+                            @foreach (DataColumn col in Model.Tables[0].Columns)
+                            {
+
+                                <td style="text-align:center">@row[col.ColumnName]</td>
+                            }
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <script type='text/javascript'>
+                $(document).ready(function () {
+                    $('#Reporte').DataTable({
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </div>
+</div>

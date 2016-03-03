@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/datepicker")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/datepicker")
+    <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.css" />
+</head>
+<body>
+    <table style="width:100%;">
+        <tr>
+            <td>
+                <div class="container">
+                    <div class="navbar navbar-inverse" role="navigation">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="Inicio.aspx">Yo Digital</a>
+                            </div>
+                            <div class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Reportes Generales", "HomeReportes", "Home")</li>
+                                    <li>@Html.ActionLink("Trabajador", "Trabajador", "Home")</li>
+                                </ul>
+                                @Html.Partial("_LoginPartial")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+                <br />
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="body-content container">
+                    @RenderBody()
+                </div>
+            </td>
+        </tr>
+    </table>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "ReportePersonalizado";
+    Layout = "~/Views/Shared/_ReportesGenerales.cshtml";
+}
+@using System.Data
+@using (Html.BeginForm("ConsultaReportePersonalizado", "Home", FormMethod.Post))
+{
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Seleccione el rango de fechas de la consulta y haga click en "Buscar"</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-1">
+
+                </div>
+                <div class="col-sm-8">
+                    <div class="input-daterange input-group" id="datepicker" data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="es">
+                        <input type="text" class="input-sm form-control" name="start" id="start" autocomplete="off" />
+                        <span class="input-group-addon">Hasta</span>
+                        <input type="text" class="input-sm form-control" name="end" id="end" autocomplete="off" />
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $('.datepicker .input-daterange').datepicker({
+                            format: "dd/mm/yyyy",
+                            language: "es"
+                        });
+                    })
+                </script>
+                <div class="col-sm-2">
+                    <input type="submit" formmethod="post" value="Buscar" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron">
+        @Html.Raw(ViewBag.Error)
+        <div>
+            <table id="ReportePersonalizado" class="table table-striped table-bordered" style="width:750px">
+
+                <thead>
+
+                    <tr>
+                        @foreach (DataColumn col in Model.Tables[0].Columns)
+                        {
+                            <th class="info" style="text-align:center; vertical-align:central; font-size:smaller">@col.ColumnName</th>
+                        }
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    @foreach (DataRow row in Model.Tables[0].Rows)
+                    {
+                        <tr>
+                            @foreach (DataColumn col in Model.Tables[0].Columns)
+                            {
+
+                                <td style="text-align:center; font-size:smaller">@row[col.ColumnName]</td>
+                            }
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <script type='text/javascript'>
+                $(document).ready(function () {
+                    $('#ReportePersonalizado').DataTable({
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+                        }
+                    });
+                });
+            </script>
+        </div>
+
+    </div>
+}
